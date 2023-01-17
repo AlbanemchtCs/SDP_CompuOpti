@@ -22,7 +22,7 @@ Outre le bénéfice pour *CompuOpti*, l'entreprise veut prendre en compte d’au
 
 3. Il est important que les projets soient réalisés dans un nombre limité de jours consécutifs, ainsi on cherchera pour cela à executer le projet le plus long en un minimum de jours. 
 
-#### :locked: Contraintes
+#### 🔒 Contraintes
 Dans la constitution du planning, un certain nombre de contraintes sont bien sûr à respecter :
 
 1. Un membre du personnel ne peut être affecté à une qualification d’un projet que s’il possède cette qualification (contrainte de qualification du personnel).
@@ -39,7 +39,7 @@ Dans la constitution du planning, un certain nombre de contraintes sont bien sû
 Pour tester notre modèle, nous disposons de trois instances de taille croissante (``toy instance.json``, ``medium instance.json`` et ``large instance.json``) au format JSON.
 Au delà de ces trois instances de départ, nous avons construit un générateur d’instances pour tester la performance de nos algorithmes.
 
-#### :bullseye: Objectifs
+#### 🎯 Objectifs
 Le projet comporte deux parties. La première partie consiste à développer et mettre en oeuvre un modèle permettant de calculer la surface des solutions non-dominées du problème d’optimisation multiobjectif. La seconde partie vise à développer un modèle de préférence permettant de discriminer entre les solutions de la surface des solutions non-dominées.
 Pour cela, il faudra être capable de partitionner les plannings en trois groupes : les planning inacceptables, corrects, et satisfaisants.
 
@@ -53,11 +53,11 @@ Notre répertoire est segmenté en X deux fichiers markdown, un fichier .gitinor
 ├── .gitignore
 ├── requirements.txt
 ├── instances   
-|   ├── instances_gived
-|   │   ├── toy instance.json
-|   │   ├── medium instance.json
-|   │   └── large instance.json
-│   └── instances_created
+│  ├── instances_gived
+│  │   ├── toy instance.json
+│  │   ├── medium instance.json
+│  │   └── large instance.json
+│  └── instances_created
 └── modelisation.ipynb
 ```
 
@@ -94,7 +94,7 @@ pip install -r requirements.txt
 python3 modelisation.py
 ```
 
-#### :thinking_face: Choix
+#### 🤔 Choix
 Nous avons décidé d'implémenter 
 
 #### :pencil2: Auteurs
