@@ -69,7 +69,7 @@ Notre répertoire est segmenté en X deux fichiers markdown, un fichier .gitinor
  - ``modelisation.ipynb`` contient notre modèle qui permet de calculer la surface des solutions non-dominées et un modèle de préférence permettant de discriminer les solutions de la surface des solutions non-dominées.
 
 #### :wrench: Installation
-Avant d'exécuter le modèle, vous devez installer [Gurobi] (https://www.gurobi.com/downloads/).
+Avant d'exécuter le modèle, vous devez installer [Gurobi](https://www.gurobi.com/downloads/).
 
 Pour exécuter le modèle, nous vous recommandons sur un terminal uniquement :
 
