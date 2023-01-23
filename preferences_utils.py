@@ -12,9 +12,12 @@ def solve_lp_preferences(inacceptable,correct,satisfaisant):
 
     m.update()
     
-    m.addConstrs((gp.quicksum([w[i] for i in range(3) if inacceptable[m][i]>=correct[n][i] ]) <= l-1e-6 for m in range(len(inacceptable)) for n in range(len(correct)) ), name="comparaison innacceptable et correct")
-    m.addConstrs((gp.quicksum([w[i] for i in range(3) if inacceptable[m][i]>=satisfaisant[n][i] ]) <= l-1e-6 for m in range(len(inacceptable)) for n in range(len(satisfaisant))), name="comparaison innacceptable et satisfaisant")
-    m.addConstrs((gp.quicksum([w[i] for i in range(3) if correct[m][i]>=satisfaisant[n][i] ]) <= l-1e-6 for m in range(len(correct)) for n in range(len(satisfaisant)) ), name="comparaison correct et satisfaisant")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if inacceptable[m][i]>=correct[n][i] ]) <= l-1e-6 for m in range(len(inacceptable)) for n in range(len(correct)) ), name="comparaison innacceptable et correct 1")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if correct[n][i]>=inacceptable[m][i] ]) >= l for m in range(len(inacceptable)) for n in range(len(correct)) ), name="comparaison innacceptable et correct 2")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if inacceptable[m][i]>=satisfaisant[n][i] ]) <= l-1e-6 for m in range(len(inacceptable)) for n in range(len(satisfaisant))), name="comparaison innacceptable et satisfaisant 1")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if satisfaisant[n][i]>=inacceptable[m][i] ]) >= l for m in range(len(inacceptable)) for n in range(len(satisfaisant))), name="comparaison innacceptable et satisfaisant 2")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if correct[m][i]>=satisfaisant[n][i] ]) <= l-1e-6 for m in range(len(correct)) for n in range(len(satisfaisant)) ), name="comparaison correct et satisfaisant 1")
+    m.addConstrs((gp.quicksum([w[i] for i in range(3) if satisfaisant[n][i]>=correct[m][i] ]) >= l for m in range(len(correct)) for n in range(len(satisfaisant)) ), name="comparaison correct et satisfaisant 2")
     m.addConstr(gp.quicksum([w[i] for i in range(3)])==1)
 
     obj = l

@@ -65,6 +65,7 @@ def add_epsilon_constraint(m,epsilon):
     return m
 
 def solve_epsilon_constraint(m,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T):
+    m.setParam('TimeLimit',120)
     m = add_epsilon_constraint(m,epsilon)
     obj1 = -gp.quicksum([m.getVarByName('r[{},{}]'.format(j,T-1))*(gains_vect[j]-gp.quicksum([penalties_vect[j]*(1-m.getVarByName('r[{},{}]'.format(j,t)))*due_dates_mat[j,t] for t in range(T)])) for j in range(M)])
     obj2 = m.getVarByName('y')
@@ -81,7 +82,7 @@ def solve_epsilon_constraint(m,epsilon,gains_vect,penalties_vect,due_dates_mat,M
 
     return [int(obj1.getValue()),int(obj2.x),int(obj3.x)]
 
-def run_epsilon_constraint(m,optimal_sol,nadir_sol,gains_vect,penalties_vect,due_dates_mat,M,T):
+def run_epsilon_constraint(m,optimal_sol,nadir_sol,gains_vect,penalties_vect,due_dates_mat,M,T):   
     pareto_surface = []
     epsilon_constraints = []
     epsilon = np.array(nadir_sol)
@@ -92,7 +93,8 @@ def run_epsilon_constraint(m,optimal_sol,nadir_sol,gains_vect,penalties_vect,due
         while sol_3 > optimal_sol[2] and feasible:
             print('step with eps2 = {} and eps3 = {}'.format(epsilon[1],epsilon[2]))
             try:
-                solution = solve_epsilon_constraint(m,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T)
+                base_model = m.copy()
+                solution = solve_epsilon_constraint(base_model,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T)
             except:
                 feasible = False
                 break
@@ -105,7 +107,8 @@ def run_epsilon_constraint(m,optimal_sol,nadir_sol,gains_vect,penalties_vect,due
         epsilon[2] = nadir_sol[2]
         if not(feasible):
             try :
-                solve_epsilon_constraint(m,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T)
+                base_model = m.copy()
+                solve_epsilon_constraint(base_model,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T)
                 feasible = True
             except :
                 break
