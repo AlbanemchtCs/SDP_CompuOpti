@@ -1,6 +1,7 @@
 import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
+import time
 
 def generate_variables_and_constraints(N,M,K,T,qualifications_mat, working_days_mat, wd_per_qual_mat):
     # Instanciation du modèle
@@ -94,7 +95,9 @@ def run_epsilon_constraint(m,optimal_sol,nadir_sol,gains_vect,penalties_vect,due
             print('step with eps2 = {} and eps3 = {}'.format(epsilon[1],epsilon[2]))
             try:
                 base_model = m.copy()
+                t0 = time.time()
                 solution = solve_epsilon_constraint(base_model,epsilon,gains_vect,penalties_vect,due_dates_mat,M,T)
+                print('solution found in {} seconds'.format (time.time()-t0))
             except:
                 feasible = False
                 break
