@@ -128,14 +128,14 @@ python3 [nom du fichier]
 
 4. Nous vous recommandons d'exécuter les notebooks et fichiers python dans l'ordre suivant : 
 
-1. trap_instances_creation.ipynb
-
-2. modelisation.ipynb
-
-3. preferences_medium_instance.ipynb
-
-4. save_efficient_solutions.py
-
+    1. trap_instances_creation.ipynb
+    
+    2. modelisation.ipynb
+    
+    3. preferences_medium_instance.ipynb
+    
+    4. save_efficient_solutions.py
+    
 
 #### 🤔 Choix
 Nous avons décidé d'implémenter 
