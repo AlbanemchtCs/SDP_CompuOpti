@@ -113,7 +113,7 @@ conda activate compuopti
 ```
 - Pour accéder au répertoire : 
 ```bash
-cd compuopti
+cd SDP_CompuOpti
 ```
 
 2. Vous devez ensuite installer tous les `requirements` en utilisant la commande suivante :
