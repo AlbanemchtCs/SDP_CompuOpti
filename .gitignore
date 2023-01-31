@@ -1,4 +1,8 @@
-.ipynb_checkpoints/modelisation-checkpoint.ipynb
-instances/instances_given/.ipynb_checkpoints/toy_instance-checkpoint.json
-.ipynb_checkpoints/trap_instances_creation-checkpoint.ipynb
-instances/instances_created/.ipynb_checkpoints/dummy_test-checkpoint.json
+# Byte-compiled
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+
+

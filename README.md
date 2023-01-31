@@ -48,25 +48,55 @@ Notre répertoire est segmenté en X deux fichiers markdown, un fichier .gitinor
 
 ```bash 
 .
+├── .gitignore
 ├── README.md
 ├── CONTRIBUTING.md
-├── .gitignore
 ├── requirements.txt
-├── instances   
-│  ├── instances_gived
-│  │   ├── toy instance.json
-│  │   ├── medium instance.json
-│  │   └── large instance.json
-│  └── instances_created
-└── modelisation.ipynb
+├── instances
+│    ├── instances_gived
+│    │   ├── large_instance.json
+│    │   ├── medium_instance.json
+│    │   └── toy_instance.json
+│    └── instances_created
+│        └── dummy_test.json
+├── trap_instances_creation.ipynb
+├── pareto_surfaces
+│    ├── large_instance.json
+│    ├── medium_instance.json
+│    └── toy_instance.json
+├── save_efficient_solutions.py
+├── modelisation.ipynb
+├── preferences_medium_instance.ipynb
+├── display_utils.py
+├── lp_utils.py
+├── preferences_utils.py
+└── utils.py
 ```
-
-- ``README.md`` contient l'ensemble des informations sur le projet pour pouvoir l'installer.
-- ``CONTRIBUTING.md`` contient l'ensemble des informations sur les normes et les pratiques de collaboration et de gestion du projet.
-- ``.gitignore`` contient les fichiers qui doivent être ignorés lors de l'ajout de fichiers au dépôt Git.
-- ``requirements.txt`` contient la liste des modules et des bibliothèques Python qui doivent être installés, ainsi que leur version spécifique.
-- ``instances`` contient l'ensemble des jeux de données avec deux sous-dossiers ``instances_gived``, qui comprend les jeux de données à notre disposition et ``instances_created``, qui comprend un génération d'instances que nous avons créé.
- - ``modelisation.ipynb`` contient notre modèle qui permet de calculer la surface des solutions non-dominées et un modèle de préférence permettant de discriminer les solutions de la surface des solutions non-dominées.
+ 
+- ``.gitignore`` contient les fichiers qui doivent être ignorés lors 
+de l'ajout de fichiers au dépôt Git.
+- ``README.md`` contient l'ensemble des informations sur le projet 
+pour pouvoir l'installer.
+- ``CONTRIBUTING.md`` contient l'ensemble des informations sur les 
+normes et les pratiques de collaboration et de gestion du projet.
+- ``requirements.txt`` contient la liste des modules et des 
+bibliothèques Python qui doivent être installés, ainsi que leur 
+version spécifique.
+- ``instances`` contient l'ensemble des jeux de données avec deux 
+sous-dossiers ``instances_gived``, qui comprend les jeux de données à
+notre disposition et ``instances_created``, qui comprend une 
+génération d'instances que nous avons créée.
+- ``trap_instances_creation.ipynb`` permet de créer notre jeu 
+d'instances ``dummy_test.json``.
+- ``pareto_surfaces`` contient l'ensemble des solutions non-dominées 
+pour chaque instance.
+- ``save_efficient_solutions.py`` permet de sauvegarder les solutions 
+non-dominées dans le dossier ``pareto_surfaces``.
+- ``modelisation.ipynb`` contient l'ensemble des étapes pour construire nos deux modèles, un pour calculer la surface des solutions non-dominées et un modèle de préférence pour discriminer les solutions de la surface des solutions non-dominées (création du PL étape par étape, epsilon constraint pour les solutions non-dominées et inférence des préférences) pour l'instance ``toy_instance.json``.
+- ``preferences_medium_instance.ipynb`` contient un test du programme 
+d'inférence de préférences sur l'instance ``medium_instance.json``.
+- Chaque fichier ``utils``, à savoir ``display_utils.py``, ``lp_utils.py``, ``preferences_utils.py`` et ``utils.py`` contient des fonctions 
+utilitaires. Ils sont régroupés par catégorie de fonctions.
 
 #### :wrench: Installation
 Avant d'exécuter le modèle, vous devez installer [Gurobi](https://www.gurobi.com/downloads/).
@@ -82,19 +112,30 @@ conda create --name compuopti python=3.9
 conda activate compuopti
 ```
 - Pour accéder au répertoire : 
-
 ```bash
-cd compuopti
+cd SDP_CompuOpti
 ```
 
 2. Vous devez ensuite installer tous les `requirements` en utilisant la commande suivante :
 ```bash
 pip install -r requirements.txt
 ```
-3. Exécuter le modèle en utilisant la commande suivante :
+
+3. Pour exécuter les fichiers python utilisez les commandes suivantes :
 ```bash
-python3 modelisation.py
+python3 [nom du fichier]
 ```
+
+4. Nous vous recommandons d'exécuter les notebooks et fichiers python dans l'ordre suivant : 
+
+    1. trap_instances_creation.ipynb
+    
+    2. modelisation.ipynb
+    
+    3. preferences_medium_instance.ipynb
+    
+    4. save_efficient_solutions.py
+    
 
 #### 🤔 Choix
 Nous avons décidé d'implémenter 
