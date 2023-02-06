@@ -72,7 +72,8 @@ Notre répertoire est segmenté en X deux fichiers markdown, un fichier .gitinor
 ├── display_utils.py
 ├── lp_utils.py
 ├── preferences_utils.py
-└── utils.py
+├── utils.py
+└── Systèmes_de_décision & préférences_Rapport.pdf 
 ```
  
 - ``.gitignore`` contient les fichiers qui doivent être ignorés lors de l'ajout de fichiers au dépôt Git.
@@ -87,6 +88,7 @@ Notre répertoire est segmenté en X deux fichiers markdown, un fichier .gitinor
 - ``preferences_medium_instance.ipynb`` contient un test du programme d'inférence de préférences sur l'instance ``medium_instance.json``.
 - ``modelisation_instance_created.ipynb`` est une réplique du notebook ``modelisation.ipynb`` qui permet d'avoir les résultats pour les instances créées (``adjusted_job_length_horizon_16.json``).
 - Chaque fichier ``utils``, à savoir ``display_utils.py``, ``lp_utils.py``, ``preferences_utils.py`` et ``utils.py`` contient des fonctions utilitaires. Ils sont régroupés par catégorie de fonctions.
+- ``Systèmes_de_décision & préférences_Rapport.pdf`` est le rapport détaillé et décrit l'ensemble de nos choix de modélisation ainsi que les résultats obtenus.
 
 #### :wrench: Installation
 Avant d'exécuter le modèle, vous devez installer [Gurobi](https://www.gurobi.com/downloads/).
