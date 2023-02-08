@@ -42,26 +42,29 @@ def solve_lp_preferences(inacceptable, correct, satisfaisant):
     return (l.x, [v.X for v in w.values()])
 
 
-def infer_classes(inacceptable, correct, satisfaisant, remaining_actions):
+def infer_classes(inacceptable, correct, satisfaisant, remaining_actions, max_majority_threshold=1):
     action_classes = dict()
     for a in remaining_actions:
         action_classes[tuple(a)] = []
         try:
-            print(solve_lp_preferences(np.concatenate(
-                (inacceptable, a.reshape(1, 3))), correct, satisfaisant))
-            action_classes[tuple(a)].append('inacceptable')
+            l, _ = solve_lp_preferences(np.concatenate(
+                (inacceptable, a.reshape(1, 3))), correct, satisfaisant)
+            if l <= max_majority_threshold:
+                action_classes[tuple(a)].append('inacceptable')
         except:
             pass
         try:
-            print(solve_lp_preferences(inacceptable, np.concatenate(
-                (correct, a.reshape(1, 3))), satisfaisant))
-            action_classes[tuple(a)].append('correct')
+            l, _ = solve_lp_preferences(inacceptable, np.concatenate(
+                (correct, a.reshape(1, 3))), satisfaisant)
+            if l <= max_majority_threshold:
+                action_classes[tuple(a)].append('correct')
         except:
             pass
         try:
-            print(solve_lp_preferences(inacceptable, correct,
-                  np.concatenate((satisfaisant, a.reshape(1, 3)))))
-            action_classes[tuple(a)].append('satisfaisant')
+            l, _ = solve_lp_preferences(inacceptable, correct,
+                                        np.concatenate((satisfaisant, a.reshape(1, 3))))
+            if l <= max_majority_threshold:
+                action_classes[tuple(a)].append('satisfaisant')
         except:
             pass
     return action_classes
